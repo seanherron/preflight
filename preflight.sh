@@ -19,8 +19,10 @@ fi
 
 source $DIRECTORY/preflight.conf
 
+echo "Updating Pacman"
 pacman -Syy
 pacman -Syu
+echo "Done Updating Pacman"
 
 # Install Basic XFCE Environment
 if ! hash xfce4-session 2>/dev/null; then
@@ -50,8 +52,10 @@ if hash salt-minion 2>/dev/null; then
   echo "file_client: local" > /etc/salt/minion.d/file_client.conf
   echo -e "file_roots:\n  base:\n    - $DIRECTORY/base" > /etc/salt/minion.d/file_roots.conf
   echo -e "providers:\n  pkg: pacman" > /etc/salt/minion.d/providers.conf
-  salt-call --local state.highstate pillar="{'username': '${username}', 'user_fullname': '${user_fullname}', 'preflight_dir': '${DIRECTORY}'}"
+  echo "About to run Salt Highstate"
+  salt-call -l debug --local state.highstate pillar="{'username': '${username}', 'user_fullname': '${user_fullname}', 'preflight_dir': '${DIRECTORY}'}"
+  echo -e "Run the following to set Numix themes:"
+  echo -e "'xfconf-query -c xsettings -p /Net/ThemeName -s \"Numix\"'"
+  echo -e "'xfconf-query -c xfwm4 -p /general/theme -s \"Numix\"'"
   echo -e "Job Complete. User ${username} has been created. If you haven't already, run 'passwd ${username}' to set a password"
 fi
-
-

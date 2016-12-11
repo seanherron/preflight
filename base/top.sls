@@ -7,3 +7,4 @@ base:
     - appearance
     - libreoffice
     - atom
+    - aur
