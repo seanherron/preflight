@@ -5,7 +5,6 @@ if [[ $EUID -ne 0 ]]; then
   exit 1
 fi
 
-
 DIRECTORY=`dirname "$(readlink -f "$0")"`
 
 if [ ! -f $DIRECTORY/preflight.conf ]; then
@@ -37,6 +36,7 @@ if ! hash git 2>/dev/null; then
   pacman -S git --noconfirm
   echo "Done installing Git."
 fi
+
 
 # Install salt
 if ! hash salt-minion 2>/dev/null; then
