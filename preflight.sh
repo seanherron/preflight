@@ -57,5 +57,5 @@ if hash salt-minion 2>/dev/null; then
   echo -e "Run the following to set Numix themes:"
   echo -e "'xfconf-query -c xsettings -p /Net/ThemeName -s \"Numix\"'"
   echo -e "'xfconf-query -c xfwm4 -p /general/theme -s \"Numix\"'"
-  echo -e "Job Complete. User ${username} has been created. If you haven't already, run 'passwd ${username}' to set a password"
+  echo -e "Job Complete."
 fi

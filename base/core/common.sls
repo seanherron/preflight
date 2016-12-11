@@ -18,6 +18,7 @@ core.ssh:
   file.directory:
     - name: /home/{{ pillar['username'] }}/.ssh
     - runas: {{ pillar['username'] }}
+    - user: {{ pillar['username'] }}
 
 core.ssh.authorized_keys:
   file.touch:
